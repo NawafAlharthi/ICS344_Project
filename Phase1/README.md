@@ -2,7 +2,7 @@
 
 To get started, we needed the IP address of the Metasploitable3 machine. We ran the `ifconfig` command directly inside the VM and picked up the address assigned by the NAT network.
 
-- **IP Found:** `10.0.2.7`
+- **IP Found:** `192.168.8.160`
 
 ![IP Discovery](Screenshots/A-FindIP-Metasplot.png)
 
