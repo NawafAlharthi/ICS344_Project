@@ -49,19 +49,14 @@ This section demonstrates the security improvement by comparing the system's sta
 **Before Defense (Phase 1):**
 the attacker was able to upload exploit.php using the FTP SITE commands. The file was successfully placed in the web root, and a reverse shell was opened.
 
-
-*Placeholder for Screenshot: Successful exploit execution from Phase 1.*
-```
-[Insert Screenshot from Phase 1 showing successful exploit execution, e.g., reverse shell connection or file upload confirmation]
-```
+![Running Script](Screenshots/F-RunningScript.png)
 
 **After Defense (Phase 3):**
 After applying the defense, the FTP server rejected the commands required to perform the exploit. The file was not uploaded and the reverse shell could not be established.
 
 *Placeholder for Screenshot: Failed exploit attempt after applying defense.*
-```
-[Insert Screenshot showing the Phase 1 script failing after the defense is applied, e.g., FTP command errors or script failure message]
-```
+
+![Running Script](Screenshots/After.png)
 
 ## ✅ Conclusion
 
