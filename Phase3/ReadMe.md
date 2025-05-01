@@ -1,62 +1,54 @@
 # Phase 3: Defensive Strategy Proposal
 
-This phase focuses on implementing and validating a defensive strategy to mitigate the ProFTPD vulnerability exploited in Phase 1.
+This phase documents the implementation and validation of a defensive strategy to mitigate the ProFTPD vulnerability (CVE-2015-3306) that was exploited in Phase 1.
 
-## 🛡️ Chosen Defense Mechanism: Disabling `mod_copy`
+## 🛡️ Vulnerability Overview
 
-The vulnerability exploited in Phase 1 (CVE-2015-3306) relies on the `mod_copy` module in ProFTPD 1.3.5. This module allows unauthenticated users to copy files using the `SITE CPFR` and `SITE CPTO` commands, which was leveraged to upload the malicious PHP shell to the web server directory.
+In Phase 1, the attacker exploited ProFTPD 1.3.5 using the mod_copy feature. This allowed unauthenticated users to upload a malicious PHP reverse shell by using the FTP commands SITE CPFR and SITE CPTO. The payload was written into the web server directory and triggered remotely.
 
-The most direct and effective defense is to disable the `mod_copy` module entirely within the ProFTPD configuration.
+## ⚙️ Defense Implementation
 
-## ⚙️ Implementation Steps
+The installed version of ProFTPD on Metasploitable3 did not include mod_copy as a loadable module, meaning there was no LoadModule directive available to disable. Instead, the defense involved explicitly blocking the use of SITE CPFR and SITE CPTO within the configuration file.
 
-Implementing this defense requires modifying the ProFTPD configuration file (`proftpd.conf`) on the victim machine (Metasploitable3).
+The configuration file was located at:
 
-1.  **Locate the Configuration File:** The ProFTPD configuration file is typically located at `/etc/proftpd/proftpd.conf` or `/etc/proftpd.conf`.
+/opt/proftpd/etc/proftpd.conf
 
-2.  **Edit the Configuration File:** Open the file using a text editor with root privileges (e.g., `sudo nano /etc/proftpd/proftpd.conf`).
+The file was edited with the following lines appended to the bottom:
 
-3.  **Disable `mod_copy`:** Find the line that loads the `mod_copy` module. This line might look similar to `LoadModule mod_copy.c`. Comment out this line by adding a `#` at the beginning:
-    ```
-    # LoadModule mod_copy.c
-    ```
-    Alternatively, if the module is loaded within a conditional block like `<IfModule mod_copy.c>`, you can comment out the entire block:
-    ```
-    # <IfModule mod_copy.c>
-    #   # Configuration specific to mod_copy
-    # </IfModule>
-    ```
-    *Note: The exact syntax might vary slightly depending on the specific ProFTPD setup.* 
+```
+<Limit SITE_CPFR>
+  DenyAll
+</Limit>
 
-4.  **Save and Close:** Save the changes to the configuration file and exit the editor.
+<Limit SITE_CPTO>
+  DenyAll
+</Limit>
+```
 
-5.  **Restart ProFTPD Service:** Apply the changes by restarting the ProFTPD service. The command to restart the service usually is:
-    ```bash
-    sudo service proftpd restart
-    ```
-    or
-    ```bash
-    sudo /etc/init.d/proftpd restart
-    ```
+These blocks prevent ProFTPD from accepting those FTP commands, effectively disabling the exploit vector.
+
+The changes were saved, and the service was restarted using the following command:
+```
+sudo /etc/init.d/proftpd restart
+```
+
 
 ## 🧪 Testing and Validation
 
-To validate the effectiveness of the defense, the original attack script from Phase 1 must be rerun against the hardened victim machine.
+The original Python script used in Phase 1 was re-executed on the attacker machine. The script failed to upload exploit.php, and no payload appeared in the web server directory.
 
-1.  **Rerun Attack Script:** Execute the Python script (`script.py`) from the Phase 1 directory on the attacker machine (Kali Linux):
-    ```bash
-    python3 /path/to/Phase1/script.py
-    ```
+Metasploit was also used to attempt the same exploit. The exploit failed to deliver the payload and no shell session was created.
 
-2.  **Expected Outcome:** With `mod_copy` disabled, the script should fail to upload the `exploit.php` file. The FTP commands `SITE CPFR` and `SITE CPTO` will no longer be recognized or permitted, preventing the core mechanism of the exploit.
+A Netcat listener was left running on the attacker's machine during both attempts. No reverse shell was received.
 
 ## 📊 Before-and-After Comparison
 
 This section demonstrates the security improvement by comparing the system's state before and after applying the defense.
 
 **Before Defense (Phase 1):**
-- The attack script successfully uploads `exploit.php` using `mod_copy`.
-- A reverse shell connection is established.
+the attacker was able to upload exploit.php using the FTP SITE commands. The file was successfully placed in the web root, and a reverse shell was opened.
+
 
 *Placeholder for Screenshot: Successful exploit execution from Phase 1.*
 ```
@@ -64,9 +56,7 @@ This section demonstrates the security improvement by comparing the system's sta
 ```
 
 **After Defense (Phase 3):**
-- The attack script fails because the `SITE CPFR` and `SITE CPTO` commands are disabled.
-- The `exploit.php` file is not uploaded to the web server.
-- No reverse shell connection can be established via this exploit vector.
+After applying the defense, the FTP server rejected the commands required to perform the exploit. The file was not uploaded and the reverse shell could not be established.
 
 *Placeholder for Screenshot: Failed exploit attempt after applying defense.*
 ```
@@ -75,4 +65,21 @@ This section demonstrates the security improvement by comparing the system's sta
 
 ## ✅ Conclusion
 
-Disabling the `mod_copy` module in the ProFTPD configuration effectively mitigates the CVE-2015-3306 vulnerability exploited in Phase 1. Rerunning the attack script confirms that the defense prevents the malicious file upload, thereby securing the service against this specific exploit.
+By adding configuration limits to deny SITE_CPFR and SITE_CPTO, the vulnerability in ProFTPD was successfully mitigated. Both scripted and manual exploit attempts failed after the change. This confirms that the defense is effective and the system is no longer vulnerable through this vector.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
