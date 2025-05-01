@@ -65,10 +65,7 @@ We identified which IPs made the most frequent connections, giving us clarity on
 ![Top IPs](Screenshots/Mostaccessed_IPS.png)
 
 ### IP Address Insights:
-- **10.0.2.5** was the most active, correlating directly with our attacker machine.
-- **127.0.0.1** had regular appearances, representing localhost traffic from within the victim host.
-- Some IP entries appeared malformed or encoded, which could indicate evasion techniques or corrupted log entries.
-
+- the host kali **192.168.8.152** was the most active, correlating directly with our attacker machine.
 ---
 
 ## 📌 **Key Takeaways from Pattern & IP Analysis**
