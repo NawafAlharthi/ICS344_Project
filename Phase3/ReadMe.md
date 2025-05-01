@@ -25,6 +25,7 @@ The file was edited with the following lines appended to the bottom:
   DenyAll
 </Limit>
 ```
+![Running Script](Screenshots/M.png)
 
 These blocks prevent ProFTPD from accepting those FTP commands, effectively disabling the exploit vector.
 
