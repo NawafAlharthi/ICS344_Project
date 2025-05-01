@@ -74,6 +74,9 @@ We examined which IPs appeared most frequently in authentication events to confi
 
 To understand how the system responded to login attempts, we grouped log events into login status categories.
 
+> 🖼️ *Screenshot: Login Event Classification*  
+![Top IPs](Screenshots/X.png)
+
 ### 🧾 Query
 ```spl
 index="main" sourcetype="auth" 
