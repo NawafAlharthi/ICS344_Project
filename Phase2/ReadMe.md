@@ -35,7 +35,7 @@ To make the victim's web access logs available for analysis, we initiated a loca
 > 📸 *Screenshot E: Temporary Python HTTP server set up on victim machine*
 ![Screenshot E](./Screenshots/E.png)
 
-> 📸 *Screenshot F: Secure copy (SCP) used to pull logs to attacker system*
+> 📸 *Screenshot F:(SSH) used to pull logs to attacker system*
 ![Screenshot F](./Screenshots/F.png)
 
 > 📸 *Screenshot H: Importing `access.log` into Splunk for victim-side analysis*
