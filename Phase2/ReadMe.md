@@ -71,7 +71,7 @@ We identified which IPs made the most frequent connections, giving us clarity on
 ## 📌 **Key Takeaways from Pattern & IP Analysis**
 
 - Evidence of exploitation centered around specific PHP endpoints.
-- The attacker’s IP showed consistent and suspicious activity—likely linked to reverse shell execution and post-exploitation steps.
+- The attacker’s Hostname showed consistent and suspicious activity—likely linked to reverse shell execution and post-exploitation steps.
 - The attack timeline matched our expectations from Phase 1, validating the sequence of compromise.
 
 ---
