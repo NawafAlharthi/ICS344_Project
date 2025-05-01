@@ -51,9 +51,9 @@ Once indexed, we explored Splunk’s built-in pattern recognition features to pi
 ![Screenshot H](./Screenshots/attack_pattern.png)
 
 ### Key Observations:
-- Repeated access to `exploit.php` and `read_log.php` implies potential scripted or automated attacks.
-- Heavy interactions with `/chat/read_log.php` suggest log scraping, potentially to monitor payload execution.
-- The presence of user agents like `Node.js` implies the attacker likely used headless clients or custom tools rather than a browser.
+- 🔐 **Successful SSH logins** from `192.168.8.152` using the `vagrant` account.  
+- 🔄 **Immediate disconnections** after each login, indicating possible scripted access.  
+- ⚡ **Rapid, repeated logins** within seconds — consistent with automated attack behavior.
 
 ---
 
