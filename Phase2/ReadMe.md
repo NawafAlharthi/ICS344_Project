@@ -83,6 +83,7 @@ index="main" sourcetype="auth"
 | stats count by status
 
 ---
+```
 
 ## ✅ **Conclusion**
 
