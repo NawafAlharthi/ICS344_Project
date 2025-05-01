@@ -82,7 +82,6 @@ index="main" sourcetype="auth"
           if(searchmatch("invalid user"), "Invalid User", "Other")))
 | stats count by status
 
----
 ```
 
 ## ✅ **Conclusion**
