@@ -88,7 +88,7 @@ index="main" sourcetype="access_combined" | stats count by status
 ```
 
 ### Insights:
-- `200 OK` appeared over 158k times, indicating successful handling of most attacker queries.
+- `200 OK` 
 - `302 Found` (redirections) could suggest login flows or endpoint reroutes.
 - `404 Not Found` signals potential scanning or brute-force attempts targeting non-existent resources.
 
@@ -103,12 +103,6 @@ index="main" sourcetype="access_combined" | top limit=10 uri_path
 ```
 
 ![Https](Screenshots/top_visted_endpoints.png)
-
-### Endpoint Observations:
-- `/chat/read_log.php`: Accessed over 155k times — strongly indicative of automation.
-- `/chat/post.php`: High interaction likely related to user input or form abuse.
-- `/exploit.php`: As the name suggests, this was likely the core of the exploit delivery.
-- Other endpoints saw limited hits and were likely part of preliminary scanning.
 
 ---
 
