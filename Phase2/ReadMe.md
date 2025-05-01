@@ -38,9 +38,6 @@ To make the victim's web access logs available for analysis, we initiated a loca
 > 📸 *Screenshot F: Secure copy (SCP) used to pull logs to attacker system*
 ![Screenshot F](./Screenshots/F.png)
 
-> 📸 *Screenshot G: Confirmation of log file arrival on attacker machine*
-![Screenshot G](./Screenshots/G.png)
-
 > 📸 *Screenshot H: Importing `access.log` into Splunk for victim-side analysis*
 ![Screenshot H](./Screenshots/H.png)
 
