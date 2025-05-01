@@ -84,7 +84,7 @@ To understand server responses to attacker requests, we broke down the HTTP stat
 
 ### 🧾 Query:
 ```spl
-index="main" sourcetype="access_combined" | stats count by status
+index="main" sourcetype="auth" | stats count by status
 ```
 
 ### Insights:
@@ -99,7 +99,7 @@ index="main" sourcetype="access_combined" | stats count by status
 We pinpointed which URI paths saw the most traffic, offering a clear view of the attacker’s targets.
 
 ```spl
-index="main" sourcetype="access_combined" | top limit=10 uri_path
+index="main" sourcetype="auth" | top limit=10 uri_path
 ```
 
 ![Https](Screenshots/top_visted_endpoints.png)
@@ -108,4 +108,4 @@ index="main" sourcetype="access_combined" | top limit=10 uri_path
 
 ## ✅ **Conclusion**
 
-Through centralized analysis in Splunk, we uncovered significant forensic evidence of a scripted attack from IP `10.0.2.5`, characterized by repeated access to vulnerable endpoints and successful exploitation events. This phase validated the reverse shell deployment observed in Phase 1 and gave us structured, data-driven insight into attacker behavior across both environments.
+Through centralized analysis in Splunk, we uncovered significant forensic evidence of a scripted attack from IP `192.168.8.152`, characterized by repeated access to vulnerable endpoints and successful exploitation events. This phase validated the reverse shell deployment observed in Phase 1 and gave us structured, data-driven insight into attacker behavior across both environments.
