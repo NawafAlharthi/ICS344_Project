@@ -8,7 +8,7 @@ For this stage, we centralized log data from both the attacker and victim machin
 ![Screenshot A](Screenshots/A.png)
 
 ### 📁 Log Sources Added:
-- **Victim (Metasploitable3):** Web server logs (`access.log`)
+- **Victim (Metasploitable3):** Web server logs (`auth.log`)
 - **Attacker (Kali Linux):** System logs (`system-journal.log`)
 
 > 📸 *Screenshot C: Attacker logs (`system-journal.log`) successfully uploaded*
@@ -38,7 +38,7 @@ To make the victim's web access logs available for analysis, we initiated a loca
 > 📸 *Screenshot F:(SSH) used to pull logs to attacker system*
 ![Screenshot F](./Screenshots/F.png)
 
-> 📸 *Screenshot H: Importing `access.log` into Splunk for victim-side analysis*
+> 📸 *Screenshot H: Importing `auth.log` into Splunk for victim-side analysis*
 ![Screenshot H](./Screenshots/H.png)
 
 ---
